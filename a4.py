@@ -61,6 +61,7 @@ if __name__ == "__main__":
     # need to write some more tests to make sure that your TTTBoard class is behaving
     # properly.
     brd = TTTBoard()
+    print(brd)
     brd.make_move("X", 8)
     brd.make_move("O", 7)
 
