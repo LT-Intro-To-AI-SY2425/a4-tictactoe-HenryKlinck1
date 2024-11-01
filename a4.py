@@ -10,11 +10,22 @@ class TTTBoard:
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
 
-    pass
-
+    def __init__(self):
+        self.board = ["*"] * 9
+    def __str__(self) -> str:
+        pass
+    def make_move(self, player: str, position: int)
+        pass
+    def game_over(self)
+        pass
+    def has_won(self, player:str) ->
+        pass
+    def clear(self) -> None
+        pass
 
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
+
 
     def is_int(maybe_int: str):
         """Returns True if val is int, False otherwise
