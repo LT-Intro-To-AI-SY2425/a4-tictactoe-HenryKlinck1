@@ -42,9 +42,9 @@ class TTTBoard:
         return False
 
     def game_over(self) -> bool:
-            if self.has_won("X") or self.has_won("O"):
+            if self.has_won("X") or self.has_won("O") or "*" not in self.board:
                 return True
-            return "*" not in self.board
+            return False
 
     def clear(self) -> None:
         self.board = ["*"] * 9
