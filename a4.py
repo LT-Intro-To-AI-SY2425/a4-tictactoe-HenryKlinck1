@@ -14,47 +14,26 @@ class TTTBoard:
         self.board = ["*"] * 9
 
     def __str__(self) -> str:
-        """Returns string representation of board"""
-        return (f"{self.board[0]}|{self.board[1]}|{self.board[2]}\n"
-                f"{self.board[3]}|{self.board[4]}|{self.board[5]}\n"
-                f"{self.board[6]}|{self.board[7]}|{self.board[8]}")
+        return "\n".join("".join(self.board[i:i+3]) for i in range(0, 9, 3))
+    
+    
 
     def make_move(self, player: str, position: int) -> bool:
-        """Attempts to make a move for player at position
+        if position < 0 or position > 8 or self.board[position] != "*":
+            return False
         
-        Args:
-            player: The player making the move ('X' or 'O')
-            position: Position to place move (0-8)
-            
-        Returns:
-            True if move was valid and made, False otherwise
-        """
-        if position < 0 or position > 8:
-            return False
-        if self.board[position] != "*":
-            return False
         self.board[position] = player
         return True
 
-    def game_over(self) -> bool:
-        """Returns True if game is over, False otherwise"""
-        if self.has_won("X") or self.has_won("O"):
-            return True
-        return "*" not in self.board
-
     def has_won(self, player: str) -> bool:
-        """Returns True if player has won, False otherwise"""
-        # Check rows
         for i in range(0, 9, 3):
             if self.board[i:i+3] == [player] * 3:
                 return True
                 
-        # Check columns 
         for i in range(3):
             if self.board[i::3] == [player] * 3:
                 return True
                 
-        # Check diagonals
         if self.board[0::4] == [player] * 3:
             return True
         if self.board[2:7:2] == [player] * 3:
@@ -62,8 +41,12 @@ class TTTBoard:
             
         return False
 
+    def game_over(self) -> bool:
+            if self.has_won("X") or self.has_won("O"):
+                return True
+            return "*" not in self.board
+
     def clear(self) -> None:
-        """Clears the board back to empty"""
         self.board = ["*"] * 9
 
 def play_tic_tac_toe() -> None:
@@ -143,4 +126,4 @@ if __name__ == "__main__":
     print("All tests passed!")
 
     # uncomment to play!
-    # play_tic_tac_toe()
+    play_tic_tac_toe()
